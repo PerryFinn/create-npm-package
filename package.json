@@ -3,11 +3,7 @@
   "version": "1.0.1",
   "author": "PerryFinn <perryfinn@163.com>",
   "homepage": "https://github.com/PerryFinn/create-npm-package",
-  "keywords": [
-    "npm",
-    "typescript",
-    "package"
-  ],
+  "keywords": ["npm", "typescript", "package"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -47,9 +43,7 @@
     "url": "https://github.com/PerryFinn/create-npm-package/issues"
   },
   "description": "2024 年如何创建一个 npm 包",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "engines": {
     "node": ">=18"
   }
