@@ -8,11 +8,19 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "lint": "tsc",
+    "build": "tsup",
     "format:check": "biome check ./",
     "format:check:fix": "biome check --write ./",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "ci": "bun run build && bun run format:check && bun run check:exports"
+    "ci": "bun run lint && bun run build && bun run format:check && bun run check:exports"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.cjs"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,6 +31,7 @@
     "@arethetypeswrong/cli": "^0.17.0",
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   },
   "bugs": {

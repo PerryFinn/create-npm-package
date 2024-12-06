@@ -9,6 +9,7 @@
     "verbatimModuleSyntax": true,
     "noImplicitOverride": true,
     "moduleResolution": "bundler",
+    "noEmit": true,
 
     /* 最佳实践 */
     "strict": true,
@@ -16,13 +17,11 @@
     "noUncheckedIndexedAccess": true,
 
     /* 转译 Typescript */
-    "module": "ES2022",
-    "outDir": "dist",
-    "rootDir": "src",
-    "sourceMap": true,
+    "module": "ES2020",
+    // "sourceMap": true,
 
     /* 构建一个库时需要开启类型声明 */
-    "declaration": true,
+    // "declaration": true,
 
     /* 在 Monorepo 中构建一个库需要开启这个字段 */
     // "declarationMap": true,
