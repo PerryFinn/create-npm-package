@@ -8,12 +8,13 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
+    "test": "vitest",
     "lint": "tsc",
     "build": "tsup",
     "format:check": "biome check ./",
     "format:check:fix": "biome check --write ./",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "ci": "bun run lint && bun run build && bun run format:check && bun run check:exports"
+    "ci": "bun run lint && && bun run test && bun run format:check && bun run build && bun run check:exports"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -32,11 +33,15 @@
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "bugs": {
     "url": "https://github.com/PerryFinn/create-npm-package/issues"
   },
   "description": "2024 年如何创建一个 npm 包",
-  "files": ["dist"]
+  "files": ["dist"],
+  "engines": {
+    "node": ">=18"
+  }
 }
