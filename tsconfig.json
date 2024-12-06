@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noImplicitOverride": true,
+    "moduleResolution": "bundler",
+
+    /* 最佳实践 */
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* 转译 Typescript */
+    "module": "ES2022",
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true,
+
+    /* 构建一个库时需要开启类型声明 */
+    "declaration": true,
+
+    /* 在 Monorepo 中构建一个库需要开启这个字段 */
+    // "declarationMap": true,
+
+    "lib": ["es2022"]
+  }
+}

@@ -1,11 +1,30 @@
 {
   "name": "create-npm-package",
-  "module": "src/index.ts",
+  "version": "1.0.0",
+  "author": "PerryFinn <perryfinn@163.com>",
+  "homepage": "https://github.com/PerryFinn/create-npm-package",
+  "keywords": ["npm", "typescript", "package"],
+  "license": "MIT",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "scripts": {
+    "build": "tsc",
+    "format:check": "biome check ./",
+    "format:check:fix": "biome check --write ./",
+    "ci": "bun run build && bun run format:check"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
+  },
+  "module": "src/index.ts",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest",
+    "typescript": "^5.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
+  "description": "2024 年如何创建一个 npm 包",
+  "files": ["dist"]
 }
