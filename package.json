@@ -14,7 +14,7 @@
     "format:check": "biome check ./",
     "format:check:fix": "biome check --write ./",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "ci": "bun run lint && && bun test && bun run format:check && bun run build && bun run check:exports"
+    "ci": "bun run lint && bun test && bun run format:check && bun run build && bun run check:exports"
   },
   "exports": {
     "./package.json": "./package.json",
