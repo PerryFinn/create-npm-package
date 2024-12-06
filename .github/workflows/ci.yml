@@ -16,6 +16,13 @@ jobs:
     steps:
       # 从仓库中检出代码。
       - uses: actions/checkout@v4
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.bun
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
       # - name: Use Node.js
       #   # 设置 Node.js 和 npm。
       #   uses: actions/setup-node@v4
