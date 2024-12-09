@@ -26,9 +26,6 @@
     /* 在 Monorepo 中构建一个库需要开启这个字段 */
     "declarationMap": true,
 
-    "lib": ["es2022"],
-
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "lib": ["es2022"]
   }
 }
