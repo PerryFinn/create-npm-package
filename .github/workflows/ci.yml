@@ -1,3 +1,5 @@
+env:
+  HUSKY: 0
 name: CI
 # 指定工作流程应在何时运行。在这种情况下，它在 PR 和 Push 到 main 分支时运行。
 on:
