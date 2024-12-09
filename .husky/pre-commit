@@ -1,3 +1,1 @@
-# .husky/pre-commit
-biome check --write $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') 
-git update-index --again
+bunx lint-staged
