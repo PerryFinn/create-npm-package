@@ -1,3 +1,4 @@
 import { add } from "./utils";
 
-add(2, 2);
+const result = add(2, 2);
+console.log(result);
