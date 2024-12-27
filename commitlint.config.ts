@@ -5,7 +5,7 @@ export default {
     "type-enum": [
       RuleConfigSeverity.Error,
       "always",
-      ["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test", "RELEASING"]
+      ["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
     ]
   }
 };
