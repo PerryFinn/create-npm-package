@@ -7,7 +7,17 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": [".git/*", "build/*", "dist/*", "node_modules/*", "assets/*", "bun.lockb", "pnpm-lock.yaml", ".idea/*"]
+    "ignore": [
+      ".git/*",
+      "build/*",
+      "dist/*",
+      "node_modules/*",
+      "assets/*",
+      "bun.lockb",
+      "pnpm-lock.yaml",
+      ".idea/*",
+      ".changeset"
+    ]
   },
   "formatter": {
     "enabled": true,
