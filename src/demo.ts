@@ -21,7 +21,7 @@ const getVersionMessage: CommitFunctions["getVersionMessage"] = async (
 
   const releasesLines = publishableReleases.map((release) => `  ${release.name}@${release.newVersion}`).join("\n");
 
-  return `chore(release): Releasing ${numPackagesReleased} package(s)
+  return `chore(release): releasing ${numPackagesReleased} package(s)
 
 Releases:
 ${releasesLines}
