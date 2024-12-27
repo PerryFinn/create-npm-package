@@ -1,7 +1,10 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entryPoints: ["src/index.ts", "src/demo.ts"],
+  entryPoints: {
+    index: "src/index.ts",
+    "changeset.commit": "./scripts/demo.ts"
+  },
   format: ["cjs", "esm"],
   dts: true,
   sourcemap: true,
