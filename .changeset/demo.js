@@ -23,4 +23,4 @@ const defaultCommitFunctions = {
   getVersionMessage
 };
 
-export default defaultCommitFunctions;
+module.exports = defaultCommitFunctions;
