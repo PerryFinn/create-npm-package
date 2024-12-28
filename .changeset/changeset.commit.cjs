@@ -17,7 +17,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/demo.ts
+// scripts/demo.ts
 var demo_exports = {};
 __export(demo_exports, {
   default: () => demo_default
@@ -44,4 +44,4 @@ var defaultCommitFunctions = {
   getVersionMessage
 };
 var demo_default = defaultCommitFunctions;
-//# sourceMappingURL=demo.cjs.map
+//# sourceMappingURL=changeset.commit.cjs.map
