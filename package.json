@@ -12,19 +12,25 @@
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "build": "tsup",
-    "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
     "release:local": "changeset version && changeset publish",
     "prepublishOnly": "bun run ci",
     "ci": "bun run lint && bun run tsc && bun test && bun run build && bun run check:exports",
     "prepare": "husky",
     "precommit": "bun run lint && bun run tsc && bun run test"
   },
+  "main": "dist/index.js",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "repository": {
