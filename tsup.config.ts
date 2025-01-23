@@ -6,7 +6,7 @@ export default defineConfig({
     // 重新生成 changeset.commit.cjs 文件时需要
     // "changeset.commit": "./scripts/changeset.commit.ts"
   },
-  format: ["cjs", "esm"],
+  format: ["cjs", "esm", "iife"],
   dts: true,
   sourcemap: true,
   outDir: "dist",
