@@ -55,7 +55,7 @@
   "bugs": {
     "url": "https://github.com/PerryFinn/create-npm-package/issues"
   },
-  "description": "2024 年如何创建一个 npm 包",
+  "description": "创建一个 npm 包",
   "files": ["dist"],
   "engines": {
     "node": ">=18",
