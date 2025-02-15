@@ -62,7 +62,7 @@
     "bun": ">=1.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["biome check --write", "vitest related --run"],
-    "*.{json,md}": ["biome check --write"]
+    "*.{js,jsx,ts,tsx}": ["biome check --write --no-errors-on-unmatched", "vitest related --run"],
+    "*.{json,md}": ["biome check --write --no-errors-on-unmatched"]
   }
 }
