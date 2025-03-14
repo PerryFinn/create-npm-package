@@ -9,8 +9,8 @@
   "scripts": {
     "test": "vitest",
     "tsc": "tsc --noEmit",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
+    "lint": "biome check . --no-errors-on-unmatched",
+    "lint:fix": "biome check --write . --no-errors-on-unmatched",
     "build": "tsup",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
     "release:local": "changeset version && changeset publish",
@@ -62,7 +62,7 @@
     "bun": ">=1.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["biome check --write", "vitest related --run"],
-    "*.{json,md}": ["biome check --write"]
+    "*.{js,jsx,ts,tsx}": ["biome check --write --no-errors-on-unmatched", "vitest related --run"],
+    "*.{json,md}": ["biome check --write --no-errors-on-unmatched"]
   }
 }
