@@ -1,6 +1,6 @@
 {
   "name": "create-npm-package",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "PerryFinn <perryfinn@163.com>",
   "homepage": "https://github.com/PerryFinn/create-npm-package",
   "keywords": ["npm", "typescript", "package"],
