@@ -2,4 +2,4 @@
 "create-npm-package": patch
 ---
 
-升级依赖
+更新 License 信息

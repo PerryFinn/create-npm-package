@@ -17,12 +17,12 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// scripts/demo.ts
-var demo_exports = {};
-__export(demo_exports, {
-  default: () => demo_default
+// scripts/changeset.commit.ts
+var changeset_commit_exports = {};
+__export(changeset_commit_exports, {
+  default: () => changeset_commit_default
 });
-module.exports = __toCommonJS(demo_exports);
+module.exports = __toCommonJS(changeset_commit_exports);
 var getAddMessage = async (changeset, options) => {
   const skipCI = options?.skipCI === "add" || options?.skipCI === true;
   const skipMsg = skipCI ? "\n\n[skip ci]\n" : "";
@@ -32,6 +32,13 @@ var getVersionMessage = async (releasePlan, options) => {
   const skipCI = options?.skipCI === "version" || options?.skipCI === true;
   const publishableReleases = releasePlan.releases.filter((release) => release.type !== "none");
   const numPackagesReleased = publishableReleases.length;
+  if (publishableReleases.length === 1) {
+    const release = publishableReleases[0];
+    if (!release) {
+      throw new Error("release info is undefined");
+    }
+    return `chore(release): ${release.name}@${release.newVersion}`;
+  }
   const releasesLines = publishableReleases.map((release) => `  ${release.name}@${release.newVersion}`).join("\n");
   return `chore(release): releasing ${numPackagesReleased} package(s)
 
@@ -43,5 +50,5 @@ var defaultCommitFunctions = {
   getAddMessage,
   getVersionMessage
 };
-var demo_default = defaultCommitFunctions;
+var changeset_commit_default = defaultCommitFunctions;
 //# sourceMappingURL=changeset.commit.cjs.map

@@ -1,6 +1,6 @@
 {
   "name": "create-npm-package",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "author": "PerryFinn <perryfinn@163.com>",
   "homepage": "https://github.com/PerryFinn/create-npm-package",
   "keywords": ["npm", "typescript", "package"],
@@ -9,8 +9,8 @@
   "scripts": {
     "test": "vitest",
     "tsc": "tsc --noEmit",
-    "lint": "biome check . --no-errors-on-unmatched ",
-    "lint:fix": "biome check --write --no-errors-on-unmatched ",
+    "lint": "biome check . --no-errors-on-unmatched",
+    "lint:fix": "biome check --write . --no-errors-on-unmatched",
     "build": "tsup",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
     "release:local": "changeset version && changeset publish",
@@ -40,17 +40,17 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.4",
     "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "^2.28.1",
+    "@changesets/cli": "^2.29.4",
     "@changesets/types": "^6.1.0",
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@commitlint/types": "^19.8.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
     "@types/bun": "latest",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.9"
+    "lint-staged": "^15.5.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.9"
   },
   "bugs": {
     "url": "https://github.com/PerryFinn/create-npm-package/issues"

@@ -1,5 +1,18 @@
 # create-npm-package
 
+## 1.0.5
+
+### Patch Changes
+
+- 8400624: 更新 tsup 配置
+
+## 1.0.4
+
+### Patch Changes
+
+- 035ad62: 升级依赖
+- 014acb0: 依赖升级
+
 ## 1.0.3
 
 ### Patch Changes
