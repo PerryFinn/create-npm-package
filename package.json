@@ -12,16 +12,16 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "tsc": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
     "build": "tsup",
     "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
     "release:local": "changeset version && changeset publish",
     "prepublishOnly": "bun run ci",
-    "ci": "bun run lint && bun run tsc && bun test && bun run build && bun run check:exports",
+    "ci": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:exports",
     "prepare": "husky",
-    "precommit": "bun run lint && bun run tsc && bun run test"
+    "precommit": "bun run lint && bun run typecheck && bun run test"
   },
   "main": "dist/index.js",
   "exports": {
