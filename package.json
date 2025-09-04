@@ -19,6 +19,7 @@
     "@types/node": "22.18.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
+    "only-allow": "^1.2.1",
     "tsdown": "^0.14.2",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
@@ -73,7 +74,8 @@
     "prepublishOnly": "bun run ci",
     "ci": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:exports",
     "prepare": "husky",
-    "precommit": "bun run lint && bun run typecheck && bun run test"
+    "precommit": "bun run lint && bun run typecheck && bun run test",
+    "preinstall": "only-allow bun"
   },
   "type": "module",
   "volta": {
