@@ -2,13 +2,23 @@
   "name": "create-npm-package",
   "version": "1.0.5",
   "author": "PerryFinn <perryfinn@163.com>",
-  "homepage": "https://github.com/PerryFinn/create-npm-package",
+  "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
   "keywords": [
     "npm",
     "typescript",
     "package"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "scripts": {
     "test": "vitest",
@@ -37,10 +47,6 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
-  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.2.2",
@@ -56,15 +62,12 @@
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
-  "bugs": {
-    "url": "https://github.com/PerryFinn/create-npm-package/issues"
-  },
-  "description": "创建一个 npm 包",
+  "description": "创建一个 npm 包的工程模板",
   "files": [
     "dist"
   ],
   "engines": {
-    "node": ">=18",
+    "node": ">=22",
     "bun": ">=1.0.0"
   },
   "lint-staged": {
