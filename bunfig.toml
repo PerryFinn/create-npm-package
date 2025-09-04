@@ -3,3 +3,6 @@
 coverage = true
 # to require 90% line-level and function-level coverage
 coverageThreshold = 0.9
+
+[install]
+registry = "https://registry.npmmirror.com"
