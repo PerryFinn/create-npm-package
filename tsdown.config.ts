@@ -10,7 +10,8 @@ export default defineConfig([
     sourcemap: true,
     outDir: "dist",
     clean: true,
-    minify: false
+    minify: false,
+    target: "es2020"
   },
   {
     entry: {
