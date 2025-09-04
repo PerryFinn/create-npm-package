@@ -20,6 +20,7 @@ export default defineConfig([
     format: ["cjs"],
     sourcemap: true,
     outDir: ".changeset",
-    clean: false
+    clean: false,
+    target: "node14"
   }
 ]);

@@ -4,6 +4,7 @@
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
   "prettier.enable": true,
+  "eslint.enable": false,
   "files.watcherExclude": {
     "**/demo.ts": true
   },
