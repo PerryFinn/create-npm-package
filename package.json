@@ -6,7 +6,6 @@
     "type": "git",
     "url": "git+https://github.com/PerryFinn/create-npm-package.git"
   },
-  "main": "dist/index.js",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "2.2.2",
@@ -24,6 +23,9 @@
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -69,7 +71,7 @@
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
     "build": "tsdown",
-    "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
+    "check:exports": "attw --pack . --profile=node16",
     "release:local": "changeset version && changeset publish",
     "prepublishOnly": "bun run ci",
     "ci": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:exports",

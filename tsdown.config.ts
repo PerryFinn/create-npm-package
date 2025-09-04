@@ -12,6 +12,11 @@ export default defineConfig([
     clean: true,
     minify: false,
     target: "es2020"
+    // 把 js 和 cjs 格式的 dts 扩展名都固定成 .d.ts（防止产出 .d.cts和 .d.ts 两种类型文件）
+    // outExtensions: ({ format }) => ({
+    //   js: format === "cjs" ? ".cjs" : ".js",
+    //   dts: ".d.ts"
+    // })
   },
   {
     entry: {
