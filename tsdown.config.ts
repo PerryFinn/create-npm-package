@@ -1,11 +1,29 @@
-import { defineConfig } from "tsdown";
+import { defineConfig, type Options } from "tsdown";
+
+// 生成 changeset 相关的构建配置
+const genChangesetConfig = (): Omit<Options, "config" | "filter"> => {
+  const enableChangesetBuild = process.env.ENABLE_CHANGESET_BUILD === "true";
+  if (!enableChangesetBuild) return {};
+
+  return {
+    entry: {
+      // 重新生成 changeset.commit.cjs 文件时需要
+      "changeset.commit": "./scripts/changeset.commit.ts"
+    },
+    format: ["cjs"],
+    sourcemap: true,
+    outDir: ".changeset",
+    clean: false,
+    target: "node14"
+  };
+};
 
 export default defineConfig([
   {
     entry: {
       index: "src/index.ts"
     },
-    format: ["cjs", "esm", "iife"],
+    format: ["cjs", "esm"],
     dts: true,
     sourcemap: true,
     outDir: "dist",
@@ -18,15 +36,5 @@ export default defineConfig([
     //   dts: ".d.ts"
     // })
   },
-  {
-    entry: {
-      // 重新生成 changeset.commit.cjs 文件时需要
-      "changeset.commit": "./scripts/changeset.commit.ts"
-    },
-    format: ["cjs"],
-    sourcemap: true,
-    outDir: ".changeset",
-    clean: false,
-    target: "node14"
-  }
+  genChangesetConfig()
 ]);
