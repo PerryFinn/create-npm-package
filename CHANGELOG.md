@@ -1,5 +1,12 @@
 # create-npm-package
 
+## 1.0.6
+
+### Patch Changes
+
+- b40dd14: update deps
+- 8032a3d: 更新 License 信息
+
 ## 1.0.5
 
 ### Patch Changes

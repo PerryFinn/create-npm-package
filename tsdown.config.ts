@@ -1,4 +1,4 @@
-import { defineConfig } from "tsup";
+import { defineConfig } from "tsdown";
 
 export default defineConfig([
   {
@@ -10,7 +10,13 @@ export default defineConfig([
     sourcemap: true,
     outDir: "dist",
     clean: true,
-    minify: false
+    minify: false,
+    target: "es2020"
+    // 把 js 和 cjs 格式的 dts 扩展名都固定成 .d.ts（防止产出 .d.cts和 .d.ts 两种类型文件）
+    // outExtensions: ({ format }) => ({
+    //   js: format === "cjs" ? ".cjs" : ".js",
+    //   dts: ".d.ts"
+    // })
   },
   {
     entry: {
@@ -20,6 +26,7 @@ export default defineConfig([
     format: ["cjs"],
     sourcemap: true,
     outDir: ".changeset",
-    clean: false
+    clean: false,
+    target: "node14"
   }
 ]);

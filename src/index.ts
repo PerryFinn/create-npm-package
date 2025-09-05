@@ -17,3 +17,7 @@ try {
 } catch (error) {
   console.error("计算出错:", error);
 }
+
+export type DemoType = {
+  name: string;
+};

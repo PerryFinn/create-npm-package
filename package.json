@@ -1,25 +1,31 @@
 {
   "name": "create-npm-package",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "PerryFinn <perryfinn@163.com>",
-  "homepage": "https://github.com/PerryFinn/create-npm-package",
-  "keywords": ["npm", "typescript", "package"],
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "test": "vitest",
-    "tsc": "tsc --noEmit",
-    "lint": "biome check . --no-errors-on-unmatched",
-    "lint:fix": "biome check --write . --no-errors-on-unmatched",
-    "build": "tsup",
-    "check:exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm --profile=node16",
-    "release:local": "changeset version && changeset publish",
-    "prepublishOnly": "bun run ci",
-    "ci": "bun run lint && bun run tsc && bun test && bun run build && bun run check:exports",
-    "prepare": "husky",
-    "precommit": "bun run lint && bun run tsc && bun run test"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
   },
-  "main": "dist/index.js",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
+    "@biomejs/biome": "2.2.2",
+    "@changesets/cli": "^2.29.6",
+    "@changesets/types": "^6.1.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
+    "@types/bun": "^1.2.21",
+    "@types/node": "22.18.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "only-allow": "^1.2.1",
+    "tsdown": "^0.14.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -33,36 +39,48 @@
       }
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
-  },
-  "devDependencies": {
-    "@arethetypeswrong/cli": "^0.17.4",
-    "@biomejs/biome": "1.9.4",
-    "@changesets/cli": "^2.29.4",
-    "@changesets/types": "^6.1.0",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@commitlint/types": "^19.8.1",
-    "@types/bun": "latest",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.5.2",
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "vitest": "^2.1.9"
-  },
   "bugs": {
     "url": "https://github.com/PerryFinn/create-npm-package/issues"
   },
-  "description": "创建一个 npm 包",
-  "files": ["dist"],
+  "description": "创建一个 npm 包的工程模板",
   "engines": {
-    "node": ">=18",
+    "node": ">=22",
     "bun": ">=1.0.0"
   },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
+  "keywords": [],
+  "license": "MIT",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["biome check --write --no-errors-on-unmatched", "vitest related --run"],
-    "*.{json,md}": ["biome check --write --no-errors-on-unmatched"]
+    "*.{js,jsx,ts,tsx}": [
+      "biome check --write --no-errors-on-unmatched",
+      "vitest related --run"
+    ],
+    "*.{css,json,jsonc,graphql,gql}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check . --no-errors-on-unmatched",
+    "lint:fix": "biome check --write . --no-errors-on-unmatched",
+    "build": "tsdown",
+    "check:exports": "attw --pack . --profile=node16",
+    "release:local": "changeset version && changeset publish",
+    "prepublishOnly": "bun run ci",
+    "ci": "bun run lint && bun run typecheck && bun test && bun run build && bun run check:exports",
+    "prepare": "husky",
+    "precommit": "bun run lint && bun run typecheck && bun run test",
+    "preinstall": "only-allow bun"
+  },
+  "type": "module",
+  "volta": {
+    "node": "22.19.0"
   }
 }

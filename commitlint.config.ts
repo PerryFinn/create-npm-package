@@ -1,11 +1,16 @@
-import { RuleConfigSeverity } from "@commitlint/types";
-export default {
+import type { UserConfig } from "@commitlint/types";
+
+/**
+ * 配置：https://commitlint.js.org/reference/configuration.html
+ */
+
+const commitlintConfiguration: UserConfig = {
+  /*
+   * Resolve and load @commitlint/config-conventional from node_modules.
+   * Referenced packages must be installed
+   */
   extends: ["@commitlint/config-conventional"],
-  rules: {
-    "type-enum": [
-      RuleConfigSeverity.Error,
-      "always",
-      ["build", "chore", "ci", "docs", "feat", "fix", "perf", "refactor", "revert", "style", "test"]
-    ]
-  }
+  helpUrl: "https://github.com/conventional-changelog/commitlint/#what-is-commitlint"
 };
+
+export default commitlintConfiguration;
