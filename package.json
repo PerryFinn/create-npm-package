@@ -1,6 +1,6 @@
 {
   "name": "create-npm-package",
-  "version": "1.0.6",
+  "version": "0.0.1",
   "description": "创建一个 npm 包的工程模板",
   "keywords": [],
   "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
