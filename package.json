@@ -1,10 +1,68 @@
 {
   "name": "create-npm-package",
   "version": "1.0.6",
-  "author": "PerryFinn <perryfinn@163.com>",
+  "description": "创建一个 npm 包的工程模板",
+  "keywords": [],
+  "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PerryFinn/create-npm-package.git"
+  },
+  "license": "MIT",
+  "author": "PerryFinn <perryfinn@163.com>",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "build:changeset": "ENABLE_CHANGESET_BUILD=true tsdown",
+    "check:exports": "attw --pack . --profile=node16",
+    "ci": "biome ci && bun run typecheck && bun run test && bun run build && bun run check:exports",
+    "preinstall": "only-allow bun",
+    "lint": "biome check . --no-errors-on-unmatched",
+    "lint:fix": "biome check --write . --no-errors-on-unmatched",
+    "precommit": "biome ci && bun run typecheck",
+    "prepare": "husky",
+    "prepublishOnly": "bun run ci",
+    "release": "changeset publish",
+    "release:version": "changeset version",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "**/package.json": [
+      "sort-package-json",
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "biome check --write --no-errors-on-unmatched",
+      "vitest related --run"
+    ],
+    "*.{css,json,jsonc,graphql,gql}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
@@ -20,72 +78,19 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
     "only-allow": "^1.2.1",
+    "sort-package-json": "^3.4.0",
     "tsdown": "^0.14.2",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      }
-    }
-  },
-  "bugs": {
-    "url": "https://github.com/PerryFinn/create-npm-package/issues"
-  },
-  "description": "创建一个 npm 包的工程模板",
   "engines": {
-    "node": ">=22",
-    "bun": ">=1.0.0"
+    "bun": ">=1.0.0",
+    "node": ">=22"
   },
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
-  "keywords": [],
-  "license": "MIT",
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "biome check --write --no-errors-on-unmatched",
-      "vitest related --run"
-    ],
-    "*.{css,json,jsonc,graphql,gql}": [
-      "biome check --write --no-errors-on-unmatched"
-    ]
+  "volta": {
+    "node": "22.19.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit",
-    "lint": "biome check . --no-errors-on-unmatched",
-    "lint:fix": "biome check --write . --no-errors-on-unmatched",
-    "build": "tsdown",
-    "build:changeset": "ENABLE_CHANGESET_BUILD=true tsdown",
-    "check:exports": "attw --pack . --profile=node16",
-    "release:version": "changeset version",
-    "release": "changeset publish",
-    "prepublishOnly": "bun run ci",
-    "ci": "biome ci && bun run typecheck && bun run test && bun run build && bun run check:exports",
-    "prepare": "husky",
-    "precommit": "biome ci && bun run typecheck",
-    "preinstall": "only-allow bun"
-  },
-  "type": "module",
-  "volta": {
-    "node": "22.19.0"
   }
 }
