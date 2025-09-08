@@ -45,7 +45,7 @@
     "precommit": "biome ci && bun run typecheck",
     "prepare": "husky",
     "prepublishOnly": "bun run ci",
-    "release": "changeset publish",
+    "release:publish": "changeset publish",
     "release:version": "changeset version",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
