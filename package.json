@@ -42,7 +42,6 @@
     "preinstall": "only-allow bun",
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
-    "precommit": "biome ci && bun run typecheck",
     "prepare": "husky",
     "prepublishOnly": "bun run ci",
     "release:publish": "changeset publish",
