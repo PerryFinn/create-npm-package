@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "author": "PerryFinn <perryfinn@163.com>",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
