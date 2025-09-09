@@ -14,10 +14,9 @@
     "**/*.code-search": true,
     "**/dist": true,
     "**/.changeset": true,
-    "**/bun.lockb": true,
+    "**/bun.lock": true,
     "**/CHANGELOG.md": true,
-    "**/LICENSE": true,
-    "**/README.md": true
+    "**/LICENSE": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
