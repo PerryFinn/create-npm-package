@@ -23,6 +23,7 @@
 - Node >= 22（Volta 固定为 22.19.0）
 - Bun >= 1.0.0
 - 包管理器：推荐使用 Bun；如需改用 npm/yarn/pnpm，请保持锁文件与依赖一致。
+- node_modules 布局：Bun 使用 `linker = "isolated"`（pnpm 风格的隔离结构）。
 
 ## 安装
 

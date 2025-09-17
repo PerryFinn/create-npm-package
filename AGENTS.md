@@ -7,7 +7,7 @@
 - `dist/` is generated output—never edit by hand. Shared configs stay at the root (`biome.json`, `tsconfig.json`, `tsdown.config.ts`, `vitest.config.ts`, `bunfig.toml`).
 
 ## Build, Test, and Development Commands
-- `bun install` installs dependencies; stick to Bun to match the existing lockfile and scripts.
+- `bun install` installs dependencies; stick to Bun to match the existing lockfile and scripts. The repo sets `linker = "isolated"`, so expect a pnpm-style nested `node_modules/` layout.
 - `bun run lint` / `bun run lint:fix` run Biome linting and formatting.
 - `bun run typecheck` executes the strict TypeScript compiler.
 - `bun run test`, `bun run test:watch`, and `bun run test:coverage` run Vitest suites and emit V8 coverage.
