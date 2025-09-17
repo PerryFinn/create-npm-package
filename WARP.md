@@ -37,7 +37,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - 版本与发布（Changesets）
 
   - 常用命令：
-    - 新增变更集：bunx changeset
+    - 新增变更集：bunx changeset add
     - 更新版本号与 changelog：bun run release:version
     - 发布到当前 registry：bun run release:publish（等价于 changeset publish，并触发 prepublishOnly → bun run ci）
   - 其他说明：

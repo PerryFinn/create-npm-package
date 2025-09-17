@@ -30,5 +30,5 @@
 - Before opening a PR, ensure `bun run ci` passes locally, capture notable output in the description, and link related issues. Add screenshots only when docs or assets change.
 
 ## Release & Versioning
-- Use Changesets for version bumps: `bunx changeset` to draft notes, then `bun run release:version` to sync versions and changelogs.
+- Use Changesets for version bumps: `bunx changeset add` to draft notes, then `bun run release:version` to sync versions and changelogs.
 - Publish with `bun run release:publish`; the script triggers `prepublishOnly` to rerun the CI chain, so resolve any failing step first.

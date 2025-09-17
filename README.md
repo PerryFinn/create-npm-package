@@ -127,7 +127,7 @@ bun run test:coverage
 1. 添加变更集（选择变更类型并填写说明）：
 
    ```bash
-   bunx changeset
+   bunx changeset add
    ```
 
 2. 生成版本号与变更日志：
