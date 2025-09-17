@@ -2,6 +2,10 @@
 
 一个用于快速搭建 npm 包的工程模板，内置 TypeScript、打包、测试、提交规范、发布流程等最佳实践，开箱即用。
 
+## 贡献指南
+
+请阅读 [Repository Guidelines](AGENTS.md)，了解目录结构、开发流程与提交流程。仓库使用 Changesets 管理版本与发布，提交功能或修复时请记得补充对应的变更集。
+
 ## 特性
 
 - TypeScript 严格模式与现代 TS 配置（`strict`、`noUncheckedIndexedAccess` 等）
@@ -11,7 +15,6 @@
 - Vitest 测试，V8 覆盖率，内置最低 90% 的覆盖率门槛（`bunfig.toml`）
 - Changesets 版本与发布流程，并支持自定义提交消息（`scripts/changeset.commit.ts`）
 - Husky + lint-staged + Commitlint 提交质量门禁（约定式提交）
-- 仅允许使用 Bun 安装依赖（`only-allow bun`），避免包管理混乱
 - 使用 Volta 固定 Node 版本，确保一致的本地/CI 环境
 - `attw`（AreTheTypesWrong）导出与类型正确性校验
 
@@ -19,7 +22,7 @@
 
 - Node >= 22（Volta 固定为 22.19.0）
 - Bun >= 1.0.0
-- 包管理器：仅支持 Bun（`preinstall` 钩子会阻止 npm/yarn/pnpm）
+- 包管理器：推荐使用 Bun；如需改用 npm/yarn/pnpm，请保持锁文件与依赖一致。
 
 ## 安装
 
@@ -33,7 +36,7 @@ bun install
 bun run src/index.ts
 ```
 
-示例会调用 `src/utils.ts` 中的 `add` 方法并输出计算结果。
+示例会调用 `src/utils/index.ts` 中的 `add` 方法并输出计算结果。
 
 ## 作为库使用
 
@@ -72,7 +75,7 @@ console.log(add(2, 3)); // 5
   - `bun run check:exports`：使用 `attw` 校验导出与类型
 - 发布（Changesets）
   - `bun run release:version`：根据变更集生成版本号与 `CHANGELOG`
-  - `bun run release`：发布到当前 registry（需已登录）
+  - `bun run release:publish`：发布到当前 registry（需已登录）
 - 其他
   - `bun run ci`：本地串跑 CI（lint → typecheck → test → build → check:exports）
   - `bun run build:changeset`：编译 `scripts/changeset.commit.ts` 为 `.changeset/changeset.commit.cjs`
@@ -85,7 +88,7 @@ console.log(add(2, 3)); // 5
 .
 ├─ src/
 │  ├─ index.ts          # 库入口与对外导出示例
-│  └─ utils.ts          # 示例工具函数（add）
+│  └─ utils/index.ts    # 示例工具函数（add）
 ├─ tests/
 │  └─ utils.test.ts     # Vitest 示例用例
 ├─ scripts/
@@ -136,7 +139,7 @@ bun run test:coverage
 3. 发布到 npm（或当前 registry）：
 
    ```bash
-   bun run release
+   bun run release:publish
    ```
 
 可选：若需自定义 Changesets 的提交消息格式，执行：
@@ -149,8 +152,6 @@ bun run build:changeset
 
 ## FAQ
 
-- 为什么只能用 Bun 安装依赖？
-  - 本模板使用 `only-allow bun` 在 `preinstall` 阶段强制 Bun，确保依赖树一致性与更快的安装速度。
 - Node 版本不满足怎么办？
   - 请将 Node 升级到 >=22，或使用 Volta/`nvm` 切换到合适版本。仓库使用 Volta 固定为 22.19.0。
 - `attw` 检查失败？
