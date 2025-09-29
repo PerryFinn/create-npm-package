@@ -6,3 +6,5 @@ coverageThreshold = 0.9
 
 [install]
 registry = "https://registry.npmmirror.com"
+# Keep pnpm-like node_modules layout for Bun
+linker = "isolated"

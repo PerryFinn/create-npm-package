@@ -4,7 +4,8 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 - 环境与前置条件
 
-  - 包管理器：本仓库通过 preinstall 钩子强制使用 Bun（only-allow bun）。不要用 npm/yarn/pnpm 安装依赖，否则会被阻止。
+  - 包管理器：推荐使用 Bun（`bun install`）以匹配锁文件和脚本；如需改用 npm/yarn/pnpm，请先与维护者确认。
+  - node_modules：Bun 通过 `linker = "isolated"` 提供 pnpm 风格的隔离结构（`node_modules/.bun`）。
   - 运行时与版本：Node >= 22，Bun >= 1.0（package.json engines 指定）。Volta 固定 Node 版本为 22.19.0（package.json volta）。
   - npm 源：.npmrc 指向 <https://registry.npmmirror.com。>
 
@@ -37,15 +38,16 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 - 版本与发布（Changesets）
 
   - 常用命令：
-    - 新增变更集：bunx changeset
-    - 本地出版本并发布到当前 registry：bun run release:local（等价于 changeset version && changeset publish）
+    - 新增变更集：bunx changeset add
+    - 更新版本号与 changelog：bun run release:version
+    - 发布到当前 registry：bun run release:publish（等价于 changeset publish，并触发 prepublishOnly → bun run ci）
   - 其他说明：
     - prepublishOnly 会执行 bun run ci，确保发布前通过质量门禁。
     - 脚本 scripts/changeset.commit.ts 会在构建时产出 .changeset/changeset.commit.cjs（由 tsdown 第二个构建目标完成），用于规范 changeset 提交信息。
 
 - 构建/打包架构（高层视图）
 
-  - TypeScript 源码位于 src/，入口为 src/index.ts，工具函数示例位于 src/utils.ts。
+  - TypeScript 源码位于 src/，入口为 src/index.ts，工具函数示例位于 src/utils/index.ts。
   - tsdown.config.ts 定义两个构建目标：
     - 产出库：输入 src/index.ts，输出 dist（cjs/esm/iife + d.ts + sourcemap，clean=true，target=es2020）。
     - 产出 changeset 提交脚本：输入 scripts/changeset.commit.ts，输出到 .changeset（cjs，clean=false，target=node14）。
