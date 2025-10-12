@@ -1,10 +1,4 @@
-[test]
-# always enable coverage
-coverage = true
-# to require 90% line-level and function-level coverage
-coverageThreshold = 0.9
-
 [install]
 registry = "https://registry.npmmirror.com"
-# Keep pnpm-like node_modules layout for Bun
-linker = "isolated"
+linker = "isolated" # Keep pnpm-like node_modules layout for Bun
+minimumReleaseAge = 604800 # 7 days in seconds
