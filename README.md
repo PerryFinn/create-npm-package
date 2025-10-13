@@ -17,6 +17,7 @@
 - Husky + lint-staged + Commitlint 提交质量门禁（约定式提交）
 - 使用 Volta 固定 Node 版本，确保一致的本地/CI 环境
 - `attw`（AreTheTypesWrong）导出与类型正确性校验
+- 使用 secretlint 检查敏感信息
 
 ## 环境要求
 
@@ -46,18 +47,18 @@ bun run src/index.ts
 ESM：
 
 ```ts
-import { add, type DemoType } from 'create-npm-package';
+import { add, type DemoType } from "create-npm-package";
 
 const result = add(2, 3);
 console.log(result); // 5
 
-const user: DemoType = { name: 'Tom' };
+const user: DemoType = { name: "Tom" };
 ```
 
 CJS：
 
 ```js
-const { add } = require('create-npm-package');
+const { add } = require("create-npm-package");
 
 console.log(add(2, 3)); // 5
 ```
