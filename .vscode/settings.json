@@ -16,7 +16,9 @@
     "**/.changeset": true,
     "**/bun.lock": true,
     "**/CHANGELOG.md": true,
-    "**/LICENSE": true
+    "**/LICENSE": true,
+    ".github": true,
+    "coverage": true
   },
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
