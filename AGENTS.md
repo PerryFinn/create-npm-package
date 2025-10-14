@@ -1,34 +1,27 @@
 # Repository Guidelines
 
+Use this guide to align contributions with the project's conventions.
+
 ## Project Structure & Module Organization
-- `src/` holds TypeScript source; keep public exports in `src/index.ts` and group features under `src/core/` or `src/utils/`.
-- Vitest specs sit in `tests/`, mirroring source paths (`tests/utils.test.ts` pairs with `src/utils/index.ts`).
-- Release utilities reside in `scripts/`; avoid runtime code there.
-- `dist/` is generated output—never edit by hand. Shared configs stay at the root (`biome.json`, `tsconfig.json`, `tsdown.config.ts`, `vitest.config.ts`, `bunfig.toml`).
+
+Source lives in `src/`; expose public APIs via `src/index.ts` and group features under `src/core/` or `src/utils/`. Tests mirror source paths inside `tests/` (e.g. `tests/utils.test.ts` targets `src/utils/index.ts`). Automation scripts belong in `scripts/`; no runtime logic there. Generated bundles land in `dist/` and must stay untouched. Shared configs (`biome.json`, `tsconfig.json`, `tsdown.config.ts`, `vitest.config.ts`, `bunfig.toml`) sit at the repository root.
 
 ## Build, Test, and Development Commands
-- `bun install` installs dependencies; stick to Bun to match the existing lockfile and scripts. The repo sets `linker = "isolated"`, so expect a pnpm-style nested `node_modules/` layout.
-- `bun run lint` / `bun run lint:fix` run Biome linting and formatting.
-- `bun run typecheck` executes the strict TypeScript compiler.
-- `bun run test`, `bun run test:watch`, and `bun run test:coverage` run Vitest suites and emit V8 coverage.
-- `bun run build` compiles via tsdown to ESM/CJS bundles plus declarations; follow with `bun run check:exports` (AreTheTypesWrong) before publishing.
-- `bun run ci` chains lint → typecheck → test → build → export checks for reliable local validation.
+
+Install dependencies with `bun install`. Run `bun run lint` or `bun run lint:fix` for Biome checks, and `bun run typecheck` for strict TypeScript validation. Execute unit tests through `bun run test`; add `-- --watch` while iterating and `bun run test:coverage` before merging. Build distributables with `bun run build`, verify exported types via `bun run check:exports`, and rely on `bun run ci` for the full lint → typecheck → test → build flow.
 
 ## Coding Style & Naming Conventions
-- Follow Biome defaults: two-space indentation, double quotes in TypeScript, trailing commas where supported, and semicolons omitted.
-- Prefer named exports and keep files/folders kebab-case or folder-index pairs.
-- Use PascalCase for types and enums, camelCase for values and functions, and SCREAMING_SNAKE_CASE only for true globals.
-- Run `bun run lint:fix` before committing so lint-staged produces minimal diffs.
+
+Stick to Biome defaults: two-space indentation, double quotes in TypeScript, trailing commas where supported, and no semicolons. Favor named exports and keep folders kebab-case or folder-index pairs. Use PascalCase for types and enums, camelCase for runtime identifiers, and reserve SCREAMING_SNAKE_CASE for true globals. Run `bun run lint:fix` prior to commit to keep diffs tidy.
 
 ## Testing Guidelines
-- Author Vitest specs under `tests/` with `.test.ts` suffixes and descriptive `describe` blocks aligned to exported APIs.
-- Maintain ≥90% coverage (enforced via `bunfig.toml`); confirm with `bun run test:coverage` before merging.
-- For targeted checks, run `bun run test -- --filter <pattern>` to execute a subset while iterating.
+
+Vitest powers the suite. Create `.test.ts` specs under `tests/` with descriptive `describe` blocks that reflect the exported function or module. Maintain ≥90% coverage; confirm with `bun run test:coverage`. Focus on modules while iterating using `bun run test -- --filter <pattern>` and capture edge cases alongside happy paths.
 
 ## Commit & Pull Request Guidelines
-- Commit messages follow Conventional Commits (`type(scope): summary`), as seen in `docs(changeset): …` and `chore(package.json): …`. Keep scopes tied to folders or configs and write concise Mandarin or English summaries.
-- Before opening a PR, ensure `bun run ci` passes locally, capture notable output in the description, and link related issues. Add screenshots only when docs or assets change.
+
+Follow Conventional Commits such as `feat(core): add formatter` or `docs(changeset): update release notes`, using scopes that match directories or tooling. Before opening a PR, ensure `bun run ci` passes, summarize notable output, link related issues, and include screenshots only for documentation or asset changes. Keep PRs small, reference this guide when mentoring contributors, and note any follow-up work.
 
 ## Release & Versioning
-- Use Changesets for version bumps: `bunx changeset add` to draft notes, then `bun run release:version` to sync versions and changelogs.
-- Publish with `bun run release:publish`; the script triggers `prepublishOnly` to rerun the CI chain, so resolve any failing step first.
+
+Manage versions with Changesets: call `bunx changeset add` to capture changes, then `bun run release:version` to sync versions and changelogs. Publish via `bun run release:publish`; it triggers `prepublishOnly`, so rerun the full CI chain locally until it passes.
