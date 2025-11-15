@@ -25,3 +25,7 @@ Follow Conventional Commits such as `feat(core): add formatter` or `docs(changes
 ## Release & Versioning
 
 Manage versions with Changesets: call `bunx changeset add` to capture changes, then `bun run release:version` to sync versions and changelogs. Publish via `bun run release:publish`; it triggers `prepublishOnly`, so rerun the full CI chain locally until it passes.
+
+## MCP Guidelines
+
+PROACTIVELY use Context7.
