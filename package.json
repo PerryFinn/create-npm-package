@@ -52,7 +52,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsdown",
@@ -61,7 +62,7 @@
     "ci": "biome ci && bun run typecheck && bun run test && bun run build && bun run check:exports",
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
-    "prepare": "husky",
+    "prepare": "bunx husky",
     "prepublishOnly": "bun run ci",
     "release:publish": "changeset publish",
     "release:version": "changeset version",

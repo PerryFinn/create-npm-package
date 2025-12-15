@@ -71,6 +71,23 @@ export const genIndexConfig = (): BuildConfig => {
   };
 };
 
+const genCLIConfig = (): UserConfig => {
+  return {
+    ...commonConfig,
+    entry: {
+      cli: "src/cli/index.ts"
+    },
+    format: ["cjs"],
+    dts: false,
+    banner: {
+      js: `#!/usr/bin/env node`
+    },
+    platform: "node"
+  };
+};
+
 export default defineConfig(
-  [genUtilsConfig(), genCoreConfig(), genIndexConfig(), genChangesetConfig()].filter(Boolean) as UserConfig[]
+  [genUtilsConfig(), genCoreConfig(), genIndexConfig(), genChangesetConfig(), genCLIConfig()].filter(
+    Boolean
+  ) as UserConfig[]
 );
