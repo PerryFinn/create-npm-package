@@ -1,21 +1,22 @@
-<!-- Your PR description here -->
+<!-- 在这里填写 PR 说明 -->
 
 ---
 
-### Please don't delete this checklist! Before submitting the PR, please make sure you do the following
+### 请不要删除此清单！（请勿删除）提交前请确认以下事项
 
-- [ ] It's really useful if your PR references an issue where it is discussed ahead of time. In many cases, features are absent for a reason. For large changes, please create an RFC.
-- [ ] This message body should clearly illustrate what problems it solves.
-- [ ] Ideally, include a test that fails without this PR but passes with it.
+- [ ] PR 已关联对应 Issue 或已有讨论；大型变更请先发起 RFC。
+- [ ] 描述清楚解决的问题与影响范围。
+- [ ] 理想情况下包含一个在未合入前失败、合入后通过的测试。
 
 ### Tests
 
-- [ ] Run the tests and other checks with `pnpm ci`
+- [ ] 已运行 `bun run ci`（lint → typecheck → test → build → check:exports）
 
 ### Changesets
 
-- [ ] If your PR makes a change that should be noted in one or more packages' changelogs, generate a changeset by running `pnpm changeset` and following the prompts. Changesets that add features and fix bugs should all be `patch` before we release `0.1.0`. Please prefix changeset messages with `feat:`, `fix:`, or `chore:`.
+- [ ] 如果变更需要记录在变更日志中，请运行 `bunx changeset add` 并按提示生成变更集。
+- [ ] 在 `0.1.0` 发布前，新增功能与修复建议使用 `patch` 类型，并在说明中使用 `feat:` / `fix:` / `chore:` 前缀。
 
 ### Edits
 
-- [ ] Please ensure that 'Allow edits from maintainers' is checked. PRs without this option may be closed.
+- [ ] 已勾选 "Allow edits from maintainers"，以便维护者协助修改。

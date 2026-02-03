@@ -1,43 +1,44 @@
-name: "\U0001F41E Bug report"
-description: Report an issue with this template
+name: "\U0001F41E 缺陷报告"
+description: 反馈模板中的问题
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! **Before you start, make sure you have the latest versions of the packages you're using.**
+        感谢你愿意提交缺陷报告！**请先确认使用的是最新版本的依赖与模板。**
   - type: textarea
     id: bug-description
     attributes:
-      label: Describe the bug
-      description: If you intend to submit a PR for this issue, tell us in the description. Thanks!
-      placeholder: Bug description
+      label: 缺陷描述
+      description: 如果你计划提交 PR，请在这里说明。谢谢！
+      placeholder: 简要描述遇到的问题
     validations:
       required: true
   - type: textarea
     id: reproduction
     attributes:
-      label: Reproduction
-      description: A link to a repository, or text descriptions, that reproduces the issue. Reproductions must be [short, self-contained and correct](http://sscce.org/) and must not contain files or code that aren't relevant to the issue — please do NOT just paste a link to your project. Explaining how to reproduce is generally not enough. It pushes the burden of creating a reproduction project onto a small set of volunteer maintainers and isn't scalable. If no reproduction is provided, the issue will be closed.
-      placeholder: Reproduction
+      label: 复现方式
+      description: 请提供可复现问题的最小示例或仓库链接。复现需 [短小、可独立运行且正确](http://sscce.org/)，不要只贴完整项目链接或无关代码。仅描述步骤而无复现往往会增加维护成本，且可能被关闭。
+      placeholder: 复现仓库地址或最小代码示例
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
-      label: Logs
-      description: Please include browser console and server logs around the time this bug occurred. Please try not to insert an image but copy paste the log text.
+      label: 日志
+      description: 请贴出出错前后的浏览器控制台或服务端日志，优先使用文本而非截图。
       render: Shell
   - type: dropdown
     id: severity
     attributes:
-      label: Severity
+      label: 严重程度
       options:
-        - annoyance
-        - serious, but I can work around it
-        - blocking all usage of this template
+        - 轻微影响（可忽略）
+        - 影响明显（仍有绕过方案）
+        - 完全阻断（无法继续）
     validations:
       required: true
   - type: textarea
     id: additional-context
     attributes:
-      label: Additional Information
+      label: 补充信息
+      description: 任何有助于定位问题的上下文（环境、版本、截图等）。
