@@ -1,15 +1,20 @@
-import { defineConfig, type Options } from "tsdown";
+import { defineConfig, type UserConfig } from "tsdown";
 
-type BuildConfig = Omit<Options, "config" | "filter"> | null;
+type BuildConfig = Omit<UserConfig, "config" | "filter"> | null;
 
-const commonConfig: Options = {
+const commonConfig: UserConfig = {
   format: ["cjs", "esm"],
   dts: true,
   sourcemap: true,
   outDir: "dist",
   clean: true,
   minify: false,
-  target: "es2020"
+  target: "es2020",
+  // 把 js 和 cjs 格式的 dts 扩展名都固定成 .d.ts（防止产出 .d.cts和 .d.ts 两种类型文件）
+  outExtensions: ({ format }) => ({
+    js: format === "cjs" ? ".cjs" : ".js",
+    dts: format === "cjs" ? ".d.cts" : ".d.ts"
+  })
 };
 
 /** 生成 changeset 相关的构建配置 */
@@ -66,6 +71,23 @@ export const genIndexConfig = (): BuildConfig => {
   };
 };
 
+const genCLIConfig = (): UserConfig => {
+  return {
+    ...commonConfig,
+    entry: {
+      cli: "src/cli/index.ts"
+    },
+    format: ["cjs"],
+    dts: false,
+    banner: {
+      js: `#!/usr/bin/env node`
+    },
+    platform: "node"
+  };
+};
+
 export default defineConfig(
-  [genUtilsConfig(), genCoreConfig(), genIndexConfig(), genChangesetConfig()].filter(Boolean) as Options[]
+  [genUtilsConfig(), genCoreConfig(), genIndexConfig(), genChangesetConfig(), genCLIConfig()].filter(
+    Boolean
+  ) as UserConfig[]
 );
