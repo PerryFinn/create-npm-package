@@ -13,7 +13,6 @@ permissions:
 jobs:
   release:
     name: create-release-pr
-    # 仅在 CI 成功且事件为 push 时创建发布 PR。
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
     runs-on: ubuntu-latest
     concurrency:
@@ -23,9 +22,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          # 拉取完整 Git 历史，方便 Changesets 生成变更日志。
           fetch-depth: 0
-          # 精确绑定到本次 CI 的执行分支，避免竞态。
           ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup bun
@@ -37,7 +34,7 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          title: "chore(release): 版本变更"
-          commit: "chore(release): 版本变更"
+          title: "chore(release): publish workspace packages"
+          commit: "chore(release): publish workspace packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
