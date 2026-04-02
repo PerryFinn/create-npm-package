@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { run } from "../src/run";
+import { run } from "../src/run.js";
 
 describe("run", () => {
   it("prints default message", () => {
     const messages: string[] = [];
-    const code = run([], (message) => {
+    const code = run([], (message: string) => {
       messages.push(message);
     });
 
@@ -14,7 +14,7 @@ describe("run", () => {
 
   it("prints help message", () => {
     const messages: string[] = [];
-    const code = run(["--help"], (message) => {
+    const code = run(["--help"], (message: string) => {
       messages.push(message);
     });
 
