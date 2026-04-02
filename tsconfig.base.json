@@ -8,13 +8,13 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "noImplicitOverride": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "bundler", // 现代 前端项目 bundler Node 库/应用 nodenext
 
     "strict": true,
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
 
-    "module": "ES2020",
+    "module": "preserve", // 现代 前端项目 preserve Node 库/应用 nodenext
     "lib": ["es2022"]
   }
 }
