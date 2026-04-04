@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "check:exports": "npm_config_cache=../../.npm-cache attw --pack . --profile=node16",
+    "check:exports": "bun ../../scripts/check-exports.ts",
     "check:type": "tsc --noEmit",
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
@@ -48,7 +48,7 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=22"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public"

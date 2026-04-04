@@ -31,7 +31,6 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@perryfinn/core": "workspace:*",
     "@perryfinn/utils": "workspace:*"
   },
   "devDependencies": {
@@ -45,7 +44,7 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=22"
+    "node": ">=24"
   },
   "publishConfig": {
     "access": "public"

@@ -19,20 +19,20 @@
     "catalogs": {
       "build": {
         "@arethetypeswrong/cli": "^0.18.2",
-        "tsdown": "^0.21.5"
+        "tsdown": "^0.21.6"
       },
       "testing": {
         "@vitest/coverage-v8": "^4.1.2",
         "vitest": "^4.1.2"
       },
       "quality": {
-        "@biomejs/biome": "2.4.9"
+        "@biomejs/biome": "^2.4.9"
       }
     }
   },
   "scripts": {
     "build": "bun run --workspaces build",
-    "check:exports": "bun run --filter @perryfinn/core check:exports && bun run --filter @perryfinn/utils check:exports",
+    "check:exports": "bun run --filter @perryfinn/utils check:exports",
     "check:type": "bun run --workspaces check:type",
     "ci": "bun run lint && bun run check:type && bun run test && bun run build && bun run check:exports",
     "lint": "bun run --workspaces lint",
