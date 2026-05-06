@@ -2,7 +2,21 @@
   "name": "@perryfinn/utils",
   "version": "0.1.0",
   "description": "Utility module for PerryFinn monorepo",
-  "keywords": [],
+  "keywords": [
+    "perryfinn",
+    "typescript",
+    "utilities",
+    "utils"
+  ],
+  "homepage": "https://github.com/PerryFinn/create-npm-package/tree/main/packages/utils#readme",
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git",
+    "directory": "packages/utils"
+  },
   "license": "MIT",
   "author": "PerryFinn <perryfinn@163.com>",
   "sideEffects": false,
@@ -25,6 +39,7 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
+    "LICENSE.txt",
     "README.md"
   ],
   "scripts": {
@@ -48,7 +63,7 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=24"
+    "node": ">=24.15.0"
   },
   "publishConfig": {
     "access": "public"

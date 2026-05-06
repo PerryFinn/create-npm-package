@@ -2,17 +2,25 @@
   "name": "@perryfinn/cli",
   "version": "0.1.0",
   "description": "CLI for PerryFinn monorepo",
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "perryfinn",
+    "typescript"
+  ],
+  "homepage": "https://github.com/PerryFinn/create-npm-package/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git",
+    "directory": "packages/cli"
+  },
   "license": "MIT",
   "author": "PerryFinn <perryfinn@163.com>",
   "type": "module",
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "default": "./dist/index.cjs"
-      }
-    }
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "bin": {
@@ -20,10 +28,12 @@
   },
   "files": [
     "dist",
+    "LICENSE.txt",
     "README.md"
   ],
   "scripts": {
     "build": "tsdown",
+    "check:exports": "bun ../../scripts/check-cli-bin.ts",
     "check:type": "tsc --noEmit",
     "lint": "biome check . --no-errors-on-unmatched",
     "lint:fix": "biome check --write . --no-errors-on-unmatched",
@@ -44,7 +54,7 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=24"
+    "node": ">=24.15.0"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,4 @@
 ---
-"@perryfinn/core": patch
 "@perryfinn/utils": patch
 "@perryfinn/cli": patch
 ---

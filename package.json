@@ -3,7 +3,23 @@
   "version": "0.2.0",
   "private": true,
   "description": "Bun workspace monorepo for PerryFinn packages",
-  "keywords": [],
+  "keywords": [
+    "bun",
+    "cli",
+    "monorepo",
+    "npm-package",
+    "template",
+    "typescript",
+    "workspace"
+  ],
+  "homepage": "https://github.com/PerryFinn/create-npm-package#readme",
+  "bugs": {
+    "url": "https://github.com/PerryFinn/create-npm-package/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryFinn/create-npm-package.git"
+  },
   "license": "MIT",
   "author": "PerryFinn <perryfinn@163.com>",
   "type": "module",
@@ -13,7 +29,7 @@
     ],
     "catalog": {
       "@types/bun": "^1.3.13",
-      "@types/node": "22.18.1",
+      "@types/node": "^24.0.0",
       "typescript": "^6.0.3"
     },
     "catalogs": {
@@ -32,9 +48,9 @@
   },
   "scripts": {
     "build": "bun run --workspaces build",
-    "check:exports": "bun run --filter @perryfinn/utils check:exports",
+    "check:exports": "bun run --filter @perryfinn/utils check:exports && bun run --filter @perryfinn/cli check:exports",
     "check:type": "bun run --workspaces check:type",
-    "ci": "bun run lint && bun run check:type && bun run test && bun run build && bun run check:exports",
+    "ci": "bun run lint && bun run check:type && bun run test:coverage && bun run build && bun run check:exports",
     "lint": "bun run --workspaces lint",
     "lint:fix": "bun run --workspaces lint:fix",
     "prepare": "bunx husky",
@@ -76,9 +92,9 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=22"
+    "node": ">=24.15.0"
   },
   "volta": {
-    "node": "24.14.0"
+    "node": "24.15.0"
   }
 }

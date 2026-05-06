@@ -25,6 +25,11 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.workflow_run.head_sha }}
 
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.15.0
+
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
 
@@ -36,5 +41,10 @@ jobs:
         with:
           title: "chore(release): publish workspace packages"
           commit: "chore(release): publish workspace packages"
+          version: bun run release:version
+          publish: bun run build && bun run release:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # 安装依赖可以继续使用项目里的镜像源；发布包必须指向 npm 官方 registry。
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
