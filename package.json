@@ -74,6 +74,9 @@
       "secretlint"
     ]
   },
+  "overrides": {
+    "fflate": "0.8.2"
+  },
   "devDependencies": {
     "@biomejs/biome": "catalog:quality",
     "@changesets/cli": "^2.31.0",
