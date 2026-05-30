@@ -34,7 +34,7 @@
     },
     "catalogs": {
       "build": {
-        "@arethetypeswrong/cli": "^0.18.2",
+        "@arethetypeswrong/cli": "^0.18.3",
         "tsdown": "^0.22.0"
       },
       "testing": {
@@ -73,9 +73,6 @@
     "*": [
       "secretlint"
     ]
-  },
-  "overrides": {
-    "fflate": "0.8.2"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:quality",
