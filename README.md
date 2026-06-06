@@ -88,6 +88,14 @@ bun run release:publish
 
 合入 `main` 后，GitHub Actions 会在 CI 成功后运行 Changesets workflow：有待发布 changeset 时创建 release PR；release PR 合入后通过 `NPM_TOKEN` 发布到 npm registry。
 
+### Release PR 处理约定
+
+- Release PR 由 GitHub Actions 中的 Changesets workflow 自动创建，通常从 `changeset-release/main` 合入 `main`。
+- `main` 分支启用了合并保护，release PR 也需要至少 1 个有写权限账号的 approving review。
+- 处理 release PR 时，先进入 PR 的 `Files changed` 页面，通过 `Review changes` 选择 `Approve` 并提交 review，再回到 `Conversation` 合并。
+- 合并 release PR 前确认它基于当前要发布的 `main`。如果 `develop` 还有尚未合入 `main` 的发布相关提交，不要直接合并旧 release PR；先合入 `develop`，再让 Changesets 重新生成或更新 release PR。
+- 合并 release PR 即表示确认发布。合并后 Changesets workflow 会执行构建和 `changeset publish`，并使用 `NPM_TOKEN` 发布到 npm registry。
+
 ## 许可证
 
 MIT © PerryFinn
