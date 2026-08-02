@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noImplicitOverride": true,
+    "moduleResolution": "bundler", // 现代 前端项目 bundler Node 库/应用 nodenext
+
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+
+    "module": "preserve", // 现代 前端项目 preserve Node 库/应用 nodenext
+    "lib": ["es2022"]
+  }
+}

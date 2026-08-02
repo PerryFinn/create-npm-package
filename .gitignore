@@ -177,3 +177,4 @@ dist
 
 # pnpm-store
 .pnpm-store
+.worktrees/

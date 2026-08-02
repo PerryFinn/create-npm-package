@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { add } from "../../src/utils";
+import { add } from "../src/index.js";
 
 describe("add", () => {
   it("应返回两个数字之和", () => {
