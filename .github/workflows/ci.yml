@@ -18,6 +18,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26.x
+
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
 
