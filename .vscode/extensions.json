@@ -1,3 +1,10 @@
 {
-  "recommendations": ["biomejs.biome", "oven.bun-vscode"]
+  "recommendations": [
+    "biomejs.biome",
+    "oven.bun-vscode",
+    "editorconfig.editorconfig",
+    "eamodio.gitlens",
+    "gruntfuggly.todo-tree",
+    "streetsidesoftware.code-spell-checker"
+  ]
 }

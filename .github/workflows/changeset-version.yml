@@ -22,9 +22,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
-          # 精确绑定到本次 CI 的执行分支，避免竞态
           ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup bun
@@ -36,7 +34,12 @@ jobs:
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
-          title: "chore(release): 版本变更"
-          commit: "chore(release): 版本变更"
+          title: "chore(release): publish workspace packages"
+          commit: "chore(release): publish workspace packages"
+          version: bun run release:version
+          publish: bun run build && bun run release:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # 安装依赖可以继续使用项目里的镜像源；发布包必须指向 npm 官方 registry。
+          NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
