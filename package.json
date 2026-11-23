@@ -48,7 +48,7 @@
   },
   "scripts": {
     "build": "bun run --workspaces build",
-    "check:exports": "bun run --filter @perryfinn/utils check:exports && bun run --filter @perryfinn/cli check:exports",
+    "check:exports": "bun run --workspaces check:exports",
     "check:type": "bun run --workspaces check:type",
     "ci": "bun run lint && bun run check:type && bun run test:coverage && bun run build && bun run check:exports",
     "lint": "bun run --workspaces lint",
@@ -89,11 +89,9 @@
     "sort-package-json": "^4.1.0",
     "typescript": "catalog:"
   },
+  "packageManager": "bun@1.4.4",
   "engines": {
-    "bun": ">=1.0.0",
+    "bun": ">=1.4.4",
     "node": ">=24.15.0"
-  },
-  "volta": {
-    "node": "24.15.0"
   }
 }
