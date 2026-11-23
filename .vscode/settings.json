@@ -1,6 +1,5 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "js/ts.tsdk.path": "node_modules/typescript",
   "cSpell.words": ["bunx", "perryfinn"],
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
