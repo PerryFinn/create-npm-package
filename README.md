@@ -30,7 +30,7 @@
 
 ## 开发环境
 
-- Node.js `24.15.0`，CI 从 `.node-version` 读取版本。
+- Node.js `^24.15.0` 或 `>=26.0.0`，CI 从 `.node-version` 读取固定版本。
 - Bun `1.4.4`，CI 从根 `package.json` 的 `packageManager` 读取版本。
 
 ## 从模板创建

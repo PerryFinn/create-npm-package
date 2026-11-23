@@ -1,6 +1,6 @@
 {
   "name": "@perryfinn/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI for PerryFinn monorepo",
   "keywords": [
     "cli",
@@ -54,7 +54,7 @@
   },
   "engines": {
     "bun": ">=1.0.0",
-    "node": ">=24.15.0"
+    "node": "^24.15.0 || >=26.0.0"
   },
   "publishConfig": {
     "access": "public"
