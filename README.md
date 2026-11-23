@@ -87,7 +87,9 @@ bun run --filter @perryfinn/cli test
 
 1. 确认 npm 包名归属和打包内容，并运行 `bun run ci`。
 2. 在 GitHub 的 **Settings → Secrets and variables → Actions** 中添加有对应包发布权限的 `NPM_TOKEN` secret。在 **Settings → Actions → General** 中允许 Actions 创建 PR。
-3. 在 **Settings → Secrets and variables → Actions → Variables** 添加 `NPM_RELEASE_REPOSITORY`，值为当前仓库的 `owner/repo`，例如 `acme/my-tool`。原模板仓库也通过同一变量启用自己的自动发布。
+3. 在 **Settings → Secrets and variables → Actions → Variables** 添加 `NPM_RELEASE_REPOSITORY`，值为当前仓库的 `owner/repo`，例如 `acme/my-tool`。
+
+原模板仓库通过 CI 验证模板示例，发布变量留空。
 
 启用后，`main` 的推送通过 CI 就会运行 Changesets。有待处理的变更集时，它会创建或更新 release PR。没有待处理的变更集时，它会尝试发布 npm 上尚未存在的包版本。
 
@@ -115,8 +117,8 @@ bun run release:publish
 ### Release PR 处理约定
 
 - Release PR 由 GitHub Actions 中的 Changesets workflow 自动创建，通常从 `changeset-release/main` 合入 `main`。
-- 按当前仓库的分支保护规则完成评审。合并 release PR 前，确认它包含这次发布需要的版本变更。
-- 原模板仓库通过 `develop` 向 `main` 汇入变更，并要求至少一个有写权限的账号批准 PR。先把本次发布需要的提交合入 `main`，再让 Changesets 更新 release PR。
+- 按当前仓库的分支保护规则完成评审。先把本次发布需要的提交合入 `main`，再让 Changesets 更新 release PR。合并 release PR 前，确认它包含这次发布需要的版本变更。
+- 原模板仓库通过 `develop` 向 `main` 汇入变更，并要求至少一个有写权限的账号批准 PR。
 
 ## 许可证
 

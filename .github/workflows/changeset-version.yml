@@ -45,7 +45,7 @@ jobs:
           title: "chore(release): publish workspace packages"
           commit: "chore(release): publish workspace packages"
           version: bun run release:version
-          publish: bun run build && bun run release:publish
+          publish: bun run release:build-and-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
