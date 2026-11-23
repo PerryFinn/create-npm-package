@@ -28,12 +28,26 @@
 └─ tsconfig.base.json
 ```
 
-## 环境要求
+## 开发环境
 
-- Node >= 24.15.0
-- Bun >= 1.0.0（当前锁文件由 Bun 1.3.13 生成）
+- Node.js `^24.15.0` 或 `>=26.0.0`，CI 从 `.node-version` 读取固定版本。
+- Bun `1.4.4`，CI 从根 `package.json` 的 `packageManager` 读取版本。
 
-## 快速开始
+## 从模板创建
+
+在 GitHub 上点 **Use this template** 创建并克隆新仓库。从仓库根目录运行以下命令，把 `@acme` 换成自己的 npm 用户或组织 scope。
+
+```bash
+bun scripts/init-template.ts --scope @acme
+bun install
+bun run ci
+```
+
+例如，仓库 `acme/my-tool` 用 `@acme` 初始化后，库名为 `@acme/my-tool`，CLI 包名为 `@acme/my-tool-cli`，命令为 `my-tool`。脚本会更新包的元数据、文档和 CLI 示例，清理模板自带的发版历史。首次安装会更新 `bun.lock`，把它和初始化改动一起提交。
+
+脚本要求新仓库的 `origin` 指向 GitHub，工作区干净，两个示例包仍使用模板原名。初始化之后，如果只需要一个包，可以删除 `packages/cli` 或 `packages/utils`。删除库时，同时移除 CLI 的 `package.json` 中对应的 `workspace:*` 依赖。删减后再运行 `bun install` 和 `bun run ci`。
+
+## 运行模板示例
 
 ```bash
 bun install
@@ -67,6 +81,18 @@ bun run --filter @perryfinn/cli test
 
 发布包会包含 `dist`、`README.md` 和 `LICENSE.txt`。因为 `dist` 不提交到 Git，发布前必须先构建。
 
+### 启用自动发布
+
+新仓库推送到 `main` 时默认执行 CI，Changesets 的发布任务会跳过。准备好发布时，按以下顺序配置新仓库。
+
+1. 确认 npm 包名归属和打包内容，并运行 `bun run ci`。
+2. 在 GitHub 的 **Settings → Secrets and variables → Actions** 中添加有对应包发布权限的 `NPM_TOKEN` secret。在 **Settings → Actions → General** 中允许 Actions 创建 PR。
+3. 在 **Settings → Secrets and variables → Actions → Variables** 添加 `NPM_RELEASE_REPOSITORY`，值为当前仓库的 `owner/repo`，例如 `acme/my-tool`。原模板仓库也通过同一变量启用自己的自动发布。
+
+启用后，`main` 的推送通过 CI 就会运行 Changesets。有待处理的变更集时，它会创建或更新 release PR。没有待处理的变更集时，它会尝试发布 npm 上尚未存在的包版本。
+
+### 手动发布
+
 1. 生成变更集
 
 ```bash
@@ -86,15 +112,11 @@ bun run build
 bun run release:publish
 ```
 
-合入 `main` 后，GitHub Actions 会在 CI 成功后运行 Changesets workflow：有待发布 changeset 时创建 release PR；release PR 合入后通过 `NPM_TOKEN` 发布到 npm registry。
-
 ### Release PR 处理约定
 
 - Release PR 由 GitHub Actions 中的 Changesets workflow 自动创建，通常从 `changeset-release/main` 合入 `main`。
-- `main` 分支启用了合并保护，release PR 也需要至少 1 个有写权限账号的 approving review。
-- 处理 release PR 时，先进入 PR 的 `Files changed` 页面，通过 `Review changes` 选择 `Approve` 并提交 review，再回到 `Conversation` 合并。
-- 合并 release PR 前确认它基于当前要发布的 `main`。如果 `develop` 还有尚未合入 `main` 的发布相关提交，不要直接合并旧 release PR；先合入 `develop`，再让 Changesets 重新生成或更新 release PR。
-- 合并 release PR 即表示确认发布。合并后 Changesets workflow 会执行构建和 `changeset publish`，并使用 `NPM_TOKEN` 发布到 npm registry。
+- 按当前仓库的分支保护规则完成评审。合并 release PR 前，确认它包含这次发布需要的版本变更。
+- 原模板仓库通过 `develop` 向 `main` 汇入变更，并要求至少一个有写权限的账号批准 PR。先把本次发布需要的提交合入 `main`，再让 Changesets 更新 release PR。
 
 ## 许可证
 

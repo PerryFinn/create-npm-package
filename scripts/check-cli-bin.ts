@@ -30,7 +30,7 @@ const readPackageJson = async (packageDir: string): Promise<PackageJson> => {
 // npm 允许 bin 写成字符串或对象；这里统一展开为可逐项检查的数组。
 const getBinEntries = (packageJson: PackageJson): BinEntry[] => {
   if (typeof packageJson.bin === "string") {
-    return [{ name: packageJson.name ?? "cli", path: packageJson.bin }];
+    return [{ name: packageJson.name?.split("/").at(-1) ?? "cli", path: packageJson.bin }];
   }
 
   return Object.entries(packageJson.bin ?? {}).map(([name, path]) => ({ name, path }));
@@ -53,7 +53,7 @@ const getPackedTarballPath = async (packageDir: string, tempDir: string): Promis
 };
 
 // 用 Node 执行解压后的 bin，避免 Bun 运行时掩盖 Node CLI 的兼容性问题。
-const runNode = async (binPath: string, args: string[], expectedOutput: string): Promise<void> => {
+const runNode = async (binPath: string, args: string[]): Promise<string> => {
   const subprocess = Bun.spawn(["node", binPath, ...args], {
     stderr: "pipe",
     stdout: "pipe"
@@ -69,9 +69,7 @@ const runNode = async (binPath: string, args: string[], expectedOutput: string):
     throw new Error(`node ${binPath} ${args.join(" ")} exited with ${exitCode}: ${stderr}`);
   }
 
-  if (!stdout.includes(expectedOutput)) {
-    throw new Error(`Expected CLI output to include "${expectedOutput}", got "${stdout.trim()}"`);
-  }
+  return stdout;
 };
 
 // 同时检查 npm bin 最容易漏掉的三件事：文件权限、shebang 和基础命令输出。
@@ -87,8 +85,15 @@ const checkBinEntry = async (extractDir: string, entry: BinEntry): Promise<void>
     throw new Error(`bin "${entry.name}" is missing the Node shebang: ${entry.path}`);
   }
 
-  await runNode(binPath, [], "perryfinn cli ready");
-  await runNode(binPath, ["--help"], "Usage: perryfinn [options]");
+  const startupOutput = await runNode(binPath, []);
+  if (!startupOutput.trim()) {
+    throw new Error(`bin "${entry.name}" did not print any startup output`);
+  }
+
+  const helpOutput = await runNode(binPath, ["--help"]);
+  if (!/^Usage:[ \t]+\S/mu.test(helpOutput)) {
+    throw new Error(`bin "${entry.name}" --help did not print a Usage line`);
+  }
 };
 
 const main = async (): Promise<void> => {

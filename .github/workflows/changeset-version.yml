@@ -13,7 +13,10 @@ permissions:
 jobs:
   release:
     name: create-release-pr
-    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' }}
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.event == 'push' &&
+          vars.NPM_RELEASE_REPOSITORY == github.repository }}
     runs-on: ubuntu-latest
     concurrency:
       group: release-${{ github.ref }}
@@ -24,6 +27,11 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.workflow_run.head_sha }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .node-version
 
       - name: Setup bun
         uses: oven-sh/setup-bun@v2
