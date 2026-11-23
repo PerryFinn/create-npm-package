@@ -54,6 +54,7 @@
     "lint": "bun run --workspaces lint",
     "lint:fix": "bun run --workspaces lint:fix",
     "prepare": "bunx husky",
+    "release:build-and-publish": "bun run build && bun run release:publish",
     "release:publish": "changeset publish",
     "release:version": "changeset version",
     "test": "bun run --workspaces test",
